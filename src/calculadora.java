@@ -28,6 +28,13 @@ public class calculadora {
         } else if (operacao == 3) {
             resultado = numero1 * numero2;
             System.out.println("Resultado da multiplicação: " + resultado);
+        } else if (operacao == 4) {
+            if (numero2 == 0) {
+                System.out.println("Erro: Não é possivel dividir um número por zero.");
+            } else {
+                resultado = numero1 / numero2;
+                System.out.println("Resultado da divisão: " + resultado);
+            }
         } else {
             System.out.println("Erro: Operação inválida.");
         }
