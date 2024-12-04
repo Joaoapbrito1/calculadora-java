@@ -19,9 +19,12 @@ public class calculadora {
         double resultado;
 
         // Estrutura de controle usando if-else
-        if (operacao == 1) { // IF - realiza um teste lógico, resultado é sempre um booleano
+        if (operacao == 1) {
             resultado = numero1 + numero2;
             System.out.println("Resultado da adição: " + resultado);
+        } else if (operacao == 2) {
+            resultado = numero1 - numero2;
+            System.out.println("Resultado da subtração: " + resultado);
         } else {
             System.out.println("Erro: Operação inválida.");
         }
