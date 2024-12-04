@@ -1,6 +1,6 @@
-# Calculadora Simples em Java
+# Calculadora em Java
 
-Este é um programa simples de calculadora desenvolvido em Java. Ele permite que o usuário insira dois números e escolha a operação desejada (adição, subtração, multiplicação ou divisão). O resultado é exibido no console. O programa também inclui tratamento para entradas inválidas e divisão por zero.
+Este é um programa de calculadora desenvolvido em Java. Ele permite que o usuário insira dois números e escolha a operação desejada (adição, subtração, multiplicação ou divisão). O resultado é exibido no console. O programa também inclui tratamento para entradas inválidas e divisão por zero.
 
 ## Funcionalidades
 
