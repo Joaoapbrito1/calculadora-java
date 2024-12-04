@@ -25,6 +25,9 @@ public class calculadora {
         } else if (operacao == 2) {
             resultado = numero1 - numero2;
             System.out.println("Resultado da subtração: " + resultado);
+        } else if (operacao == 3) {
+            resultado = numero1 * numero2;
+            System.out.println("Resultado da multiplicação: " + resultado);
         } else {
             System.out.println("Erro: Operação inválida.");
         }
