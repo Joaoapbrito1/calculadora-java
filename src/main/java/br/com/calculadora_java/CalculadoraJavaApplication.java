@@ -53,18 +53,23 @@ public class CalculadoraJavaApplication implements CommandLineRunner {
 				resultado = numero1 - numero2;
 				break;
 			case 3:
-				resultado = numero1 * numero2;
+				resultado = BigDecimal.valueOf(numero1)
+						.multiply(BigDecimal.valueOf(numero2))
+						.setScale(2, RoundingMode.HALF_UP)
+						.doubleValue();
 				break;
 			case 4:
 				if (numero2 == 0) {
 					throw new IllegalArgumentException("Não é possível dividir por zero.");
 				}
-				resultado = numero1 / numero2;
+				resultado = BigDecimal.valueOf(numero1)
+						.divide(BigDecimal.valueOf(numero2), 2, RoundingMode.HALF_UP)
+						.doubleValue();
 				break;
 			default:
 				throw new IllegalArgumentException("Operação inválida.");
 		}
 
-		return new BigDecimal(resultado).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		return resultado;
 	}
 }
