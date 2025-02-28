@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -31,32 +33,43 @@ public class CalculadoraJavaApplication implements CommandLineRunner {
 		System.out.println("Digite o segundo número:");
 		double numero2 = scanner.nextDouble();
 
+		try {
+			double resultado = calcular(numero1, numero2, operacao);
+			System.out.println("Resultado: " + String.format("%.2f", resultado));
+		} catch (IllegalArgumentException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+
+		scanner.close();
+	}
+
+	public double calcular(double numero1, double numero2, int operacao) {
 		double resultado;
 		switch (operacao) {
 			case 1:
 				resultado = numero1 + numero2;
-				System.out.println("Resultado da adição: " + resultado);
 				break;
 			case 2:
 				resultado = numero1 - numero2;
-				System.out.println("Resultado da subtração: " + resultado);
 				break;
 			case 3:
-				resultado = numero1 * numero2;
-				System.out.println("Resultado da multiplicação: " + resultado);
+				resultado = BigDecimal.valueOf(numero1)
+						.multiply(BigDecimal.valueOf(numero2))
+						.setScale(2, RoundingMode.HALF_UP)
+						.doubleValue();
 				break;
 			case 4:
 				if (numero2 == 0) {
-					System.out.println("Erro: Não é possível dividir um número por zero.");
-				} else {
-					resultado = numero1 / numero2;
-					System.out.println("Resultado da divisão: " + resultado);
+					throw new IllegalArgumentException("Não é possível dividir por zero.");
 				}
+				resultado = BigDecimal.valueOf(numero1)
+						.divide(BigDecimal.valueOf(numero2), 2, RoundingMode.HALF_UP)
+						.doubleValue();
 				break;
 			default:
-				System.out.println("Erro: Operação inválida.");
+				throw new IllegalArgumentException("Operação inválida.");
 		}
 
-		scanner.close();
+		return resultado;
 	}
 }
